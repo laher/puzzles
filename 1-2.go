@@ -56,7 +56,7 @@ func pay_toll_lazy(b BagType, toll int) {
 // lazy be bollocks, recurse the mofo
 // even payment = divide tolls across all bags
 func pay_toll_even(b BagType, toll int) {
-//	fmt.Println(b, " ", toll)
+	//	fmt.Println(b, " ", toll)
 	fullest_bag := 0
 	amount_in_fullest_bag := 0
 
@@ -73,13 +73,12 @@ func pay_toll_even(b BagType, toll int) {
 		return
 	}
 
-//	fmt.Println("paying a coin from bag", fullest_bag)
+	//	fmt.Println("paying a coin from bag", fullest_bag)
 	b.bags[fullest_bag]--
 	if toll-1 > 0 {
 		pay_toll_even(b, toll-1)
 	}
 }
-
 
 // calculate how much money I have left across all me money bags
 func total_bucks(b BagType) int {
@@ -94,7 +93,7 @@ func total_bucks(b BagType) int {
 func main() {
 	var even = flag.Bool("even", true, "Pay coins evenly")
 	flag.Parse()
-	
+
 	// three money bags of 30 each
 	b := BagType{make([]int, 3), 3}
 	which_booth := 1
@@ -102,7 +101,7 @@ func main() {
 		b.bags[i] = 30
 	}
 
-	num_toll_booths = 30
+	num_toll_booths := 30
 	for which_booth <= num_toll_booths {
 		t := toll(b)
 		fmt.Print("Toll gate ", which_booth, ", Toll = ", t, ", Start = $", total_bucks(b))
